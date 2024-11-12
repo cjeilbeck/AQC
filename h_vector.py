@@ -1,16 +1,5 @@
 import numpy as np
 
-m_adj = np.array([
-    [0, 1, 1, 0, 0],
-    [0, 0, 1, 0, 1],
-    [0, 0, 0, 1, 1],
-    [0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0]])
-
-
-
-
-
 def h_mat(M, kappa):
     width = len(M[0])
     h_init = np.zeros(width)

@@ -29,19 +29,18 @@ def Evolution(tmax, Ising, n, q, k, phi0, phi_target):
     tau = tmax / q
     product = np.eye(2**n, dtype=complex)
     fidelities = []
-    
-    for i in range(k):
-        jay = k - i 
-        # Calculate time-dependent Hamiltonian and exponential
-        H_t = Hamiltonian(jay * tau, tmax, Ising, n)
+
+    for i in range(1, k + 1):
+        # Calculate time-dependent Hamiltonian at time t = i * tau
+        H_t = Hamiltonian(i * tau, tmax, Ising, n)
         exp_term = expm(-1j * tau * H_t)
-        
-        
-        product = np.matmul(product, exp_term)
-        
-        
+
+        # Apply in time-ordered manner (new term on the left)
+        product = np.matmul(exp_term, product)
+
+        # Calculate evolved state and fidelity
         evolved_state = np.matmul(product, phi0)
-        fidelity = np.abs(np.vdot(evolved_state, phi_target))**2
+        fidelity = np.abs(np.inner(evolved_state, phi_target))**2
         fidelities.append(fidelity)
 
     return evolved_state, fidelities

@@ -1,4 +1,3 @@
-#def J= adjacency matrix and hk = -(jsum of Mkj + Mjk) + kappa
 
 from PAULI_DEF import pauli, X, Y, Z, I
 from H_ising import ising_hamiltonian
@@ -18,6 +17,7 @@ def columnvector(length,position):
 
 #defining starting variables 
 
+#*******************************************
 m_adj = np.array([
     [0, 1, 1, 0, 0],
     [0, 0, 1, 0, 1],
@@ -29,10 +29,12 @@ htest = h_mat(m_adj,0.5)
 H_Ising = ising_hamiltonian(m_adj, htest, 5)
 phi_0 = (1/np.sqrt(32)) * np.ones(32)
 phitarget = columnvector(32,19)
-tmax_values = [1, 2, 5, 10, 100]
-q = 500
+tmax_values = [1,2,5,10,100]
+q = 200
 n = 5
-k = 500
+k = 200
+#*******************************************
+
 
 # plotting section
 
